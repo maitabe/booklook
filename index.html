@@ -1,15 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<title>book look</title>
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
+<div class="container">
+  <div class="row">
+  	<div class="col-xs-8 col-xs-offset-2">
+  	  <h1 class="page-header">BookLook <i class="fa fa-eye" aria-hidden="true"></i></h1>
+  	  	<div id="info-book">
 
+  	  	</div>
+  		<figure id=class="highlight">
+  		  <h3>Enter Book Info</h3>
+		  <form >
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Book Title" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Book Author" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Book Description" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Image URL" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Number of Pages" aria-describedby="basic-addon1">
+			</div>
+
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Minutes You Read Per Day" aria-describedby="basic-addon1">
+			</div>
+
+			<button type="button" class="btn btn-primary">Search</button>
+		  </form>
+  		</figure>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script id="book-template" type="text/x-handlebars-template">
+	<div>
+		<p> This book will take you {{ time }} days to read. </p>
+		<h2> {{ title }} </h2>
+		<p> {{ description }} </p>
+		<h4> Written by: {{ author }} </h4>
+		<img src=" {{ imgSrc }}  "/>
+	</div>
+
+</script>
 <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="script.js"></script>
+
+
 </body>
 </html>
