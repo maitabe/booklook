@@ -1,18 +1,48 @@
-// var books =
-// 	{title:'The Hunger Games',
-// 	 author:'Suzanne Collins',
-// 	 description:'Katniss Everdeen lives in a place called Panem. Panem lies on what used to be North America. Panem is split up into 12 districts. Each year, every district is forced to randomly choose two tributes--one girl and one boy--to fight in the annual Hunger Games.',
-// 	 time:25,
-// 	 pages:374,
-// 	 imgSrc:'img/hungerGames.jpg'
-// 	};
 
 
+//functions
+var fetch = function(isbn) {
+	$.ajax({
+	  method: "GET",
+	  // url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:0439023521',
+	  url: 'https://www.googleapis.com/books/v1/volumes?q=' + isbn,
+	  dataType: "json",
+	  success: function(data) {
+	  	console.log(data);
+	  	displayData(data);
+	  },
+	  error: function(jqXHR, textStatus, errorThrown) {
+	    console.log(textStatus);
+	  }
+	});
+};
 
-var source = $('#book-template').html();
-var template = Handlebars.compile(source);
-var newHtml = template(books);
-// $('#info-book').append(newHtml);
+var displayData = function(data) {
+
+	if(data.totalItems){
+
+		var newBook = {
+			title: data.items[0].volumeInfo.title,
+			description: data.items[0].volumeInfo.description,
+			author: data.items[0].volumeInfo.authors,
+			img: data.items[0].volumeInfo.imageLinks.smallThumbnail,
+			pages: data.items[0].volumeInfo.pageCount
+		};
+
+
+		var source = $('#book-template').html();
+		var template = Handlebars.compile(source);
+		var newHtml = template(newBook);
+		$('#info-book').append(newHtml);
+
+	}else{
+		$('#error-message').append('book not found');
+		$('input#book-isbn').addClass('warning');
+	}
+
+
+};
+
 
 
 //event handlers
@@ -20,14 +50,11 @@ $(document).ready(function() {
 
 	$('#search-book').on('click', function(){
 
-		var title = $('#book-title').val();
-		var author = $('#book-author').val();
-		var description = $('#book-description').val();
-		var imgSrc = $('#book-url').val();
-		var pages = $('#book-no-pages').val();
-		var time = $('#book-read-time').val();
+		var isbn = $('#book-isbn').val();
 
-		$('#info-book').append(newHtml);
+		fetch(isbn);
+
+		$('#book-isbn').val('');
 	});
 
 });

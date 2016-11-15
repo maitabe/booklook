@@ -14,16 +14,19 @@
   	  	<div id="info-book">
 
   	  	</div>
-  		<figure id=class="highlight">
-  		  <h3>Search by ISBN</h3>
+
 		  <form >
+		   <h3>Search by ISBN</h3>
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="ISBN Number" id="book-title" aria-describedby="basic-addon1">
+			  <input type="text" class="form-control" placeholder="ISBN Number" id="book-isbn" aria-describedby="basic-addon1">
 			</div>
+			<div id="error-message">
+
+	        </div>
 
 			<button type="button" class="btn btn-primary" id="search-book"> Search</button>
 		  </form>
-  		</figure>
+
     </div>
   </div>
 </div>
@@ -35,11 +38,11 @@
 
 <script id="book-template" type="text/x-handlebars-template">
 	<div>
-		<p> This book will take you {{ time }} days to read. </p>
+		<p> This book have {{ pages }} pages. </p>
 		<h2> {{ title }} </h2>
 		<p> {{ description }} </p>
 		<h4> Written by: {{ author }} </h4>
-		<img src=" {{ imgSrc }}  "/>
+		<img src=" {{ img }}  "/>
 	</div>
 
 </script>
